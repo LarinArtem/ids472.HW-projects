@@ -1,19 +1,45 @@
-Data Mining hw and final project (IDS 472)
+# IDS 472 — Data Mining & Predictive Analytics Coursework
 
-This repository contains coursework and a comprehensive final project from a Predictive Analytics and Supervised Learning course, with a strong emphasis on end-to-end model development, evaluation, and interpretation. The central focus of the project is a customer churn prediction problem using the Telco Customer Churn dataset, a widely used benchmark in applied machine learning.
+Homework assignments and a team final project covering the supervised-learning workflow end to end: exploratory analysis, preprocessing, model training and comparison, cross-validation, and translating results into business recommendations. Built primarily with **scikit-learn**, plus **XGBoost** for the final project.
 
-The project follows a structured analytical workflow beginning with data preprocessing and feature engineering. Raw customer data is cleaned and transformed using Pandas, with categorical variables encoded into numerical representations and continuous features appropriately scaled. Missing values are systematically handled to ensure model robustness and prevent data leakage. These steps reflect industry best practices in preparing real-world business data for supervised learning tasks.
+*Team: Artem Larin, Ihor Stepura, Krima Mehta, Arturo Perez.*
 
-Multiple classification algorithms are implemented and compared using scikit-learn, including:
+## Repository contents
 
-k-Nearest Neighbors (KNN) for distance-based classification,
+| Notebook | Topic |
+|---|---|
+| `hw0_v4.ipynb` | Python/Pandas/NumPy/Matplotlib fundamentals warm-up |
+| `hw1_v6.ipynb` | Introductory supervised learning with scikit-learn (train/test splits, first classifiers) |
+| `hw2_v6.ipynb` | k-Nearest Neighbors — choosing K, comparing accuracy across K values, visual EDA with Seaborn |
+| `IDS_472_HM3_D3.ipynb` | Regression analysis — probing (non)linearity of relationships, model fitting and diagnostics |
+| `hw4_resubmission1.ipynb` | Naive Bayes on the `accidentsFull.csv` dataset (42,183 US automobile accidents, 2001) — naive rule baselines, conditional probabilities, injury prediction |
+| `IDS_472_HM5_D2.ipynb` | Tree ensembles — CART vs. AdaBoost with 5-fold cross-validation, model selection by R² |
+| `hw6_D3.ipynb` | Model complexity vs. class imbalance — why simpler models still struggle on imbalanced data |
+| `IDS_472_Final_Project_D4.ipynb` | Full end-to-end final project (EDA → features → models → business insights) |
 
-Decision Trees for interpretable, rule-based modeling,
+## Final project design (`IDS_472_Final_Project_D4.ipynb`)
 
-Multi-Layer Perceptron (MLP) neural networks to capture non-linear relationships.
+The capstone follows a four-part structure mirroring a real analytics engagement:
 
-The dataset is partitioned into training and testing subsets using a hold-out validation framework (train_test_split) to evaluate out-of-sample performance. Model effectiveness is assessed with detailed performance metrics—accuracy, precision, recall, and F1-score—via classification_report, allowing for nuanced comparison across models and an understanding of trade-offs between predictive power and interpretability.
+1. **Exploratory Data Analysis & Preprocessing** — distribution analysis, missing-value handling, encoding of categorical variables, scaling; visual EDA with Matplotlib/Seaborn.
+2. **Feature Engineering & Selection** — constructing informative features and pruning uninformative ones to reduce noise and leakage risk.
+3. **Model Building & Evaluation** — multiple classifiers trained and compared (scikit-learn models plus **XGBoost**), evaluated on held-out data with accuracy, precision, recall, and F1 to expose trade-offs rather than relying on a single metric.
+4. **Business Insights & Recommendations** — the models are interpreted in decision-making terms: which customers/records to act on, what drives predictions, and where each model's limitations matter in deployment.
 
-Beyond technical implementation, the project emphasizes model evaluation and business relevance. The churn predictions are framed in a decision-making context, demonstrating how supervised learning can be used to identify at-risk customers and inform retention strategies. The analysis highlights strengths and limitations of each modeling approach, reinforcing the importance of model selection based on both statistical performance and practical deployment considerations.
+## Themes across the coursework
 
-Overall, this repository demonstrates strong proficiency in applied machine learning, predictive modeling, and data-driven decision support, with clear evidence of the ability to translate raw business data into actionable insights using professional analytics tools.
+- **Baselines first** — hw4 starts from the naive rule (predict the majority class) before Bayes methods, quantifying what a model must beat.
+- **Validation discipline** — hold-out splits early on, then k-fold cross-validation (hw5) once model comparison becomes the point.
+- **Interpretation over output** — notebooks include written reasoning for each result (e.g., why KNN accuracy plateaus across K, why class imbalance defeats complexity reduction in hw6), not just code cells.
+- **Team workflow** — assignments are collaborative deliverables with clearly attributed question-by-question structure.
+
+## Tech stack
+
+Python, `pandas`, `numpy`, `scikit-learn` (KNN, decision trees, Naive Bayes, MLP, AdaBoost, CART), `xgboost`, `matplotlib`, `seaborn`.
+
+## Running
+
+```bash
+pip install pandas numpy scikit-learn xgboost matplotlib seaborn
+```
+Each notebook is self-contained; place the referenced CSV datasets (e.g., `accidentsFull.csv`, the final-project dataset) alongside the notebook and run top to bottom.
